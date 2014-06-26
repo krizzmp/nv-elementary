@@ -79,3 +79,16 @@ li{
 	flex:1;
     outline: none;
 }
+.sidebar.overview > ul{
+    display: none;
+}
+.sidebar > .overview{
+    display: none;
+}
+.overview > .overview{
+    display: block;
+}
+#overview{
+    width: 0;
+    border: none;
+}

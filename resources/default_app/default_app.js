@@ -16,7 +16,7 @@ app.on('ready', function() {
   else if (process.platform == 'linux')
     height += 30;
 
-  mainWindow = new BrowserWindow({ width: 800, height: height, center:true });
+  mainWindow = new BrowserWindow({ width: 800, height: height, center:true, title:"Notes" });
   mainWindow.loadUrl('file://' + __dirname + '/index.html');
 
 });

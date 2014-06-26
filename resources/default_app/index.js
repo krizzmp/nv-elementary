@@ -1,6 +1,7 @@
 var ipc = require('ipc');
 var $  = require('./jquery-2.1.1.js');
-var ul = $(".sidebar ul");
+//var ace  = require('./src-noconflict/ace');
+var ul = $(".sidebar > ul");
 var input = $(".toolbar input");
 var main = $(".main");
 
@@ -40,9 +41,19 @@ ipc.on('send-file', function(arg) {
     displayNote(arg);
     // prints "pong"
 });
+//editor.setTheme("ace/theme/monokai");
+//editor.getSession().setMode("ace/mode/markdown");
+//editor.getSession().setUseWrapMode(true);
+//editor.setHighlightActiveLine(false);
+//editor.getSession().setWrapLimitRange(null, null);
+//editor.setShowPrintMargin(false);
+//editor.setOption("showLineNumbers", false);
+
 var displayNote = function(note){
     //console.log("displaynote");
-    $(".main").val(note); //text(note)
+    editor.setValue(note); //text(note)
+    editor.clearSelection();
+    editor.blur();
 };
 
 input.on("keyup",function(e){
@@ -75,5 +86,6 @@ input.on("keydown",function(e){
 });
 main.on("input",function(){
     console.log(this.value);
-    ipc.send("write-file",[$(".active .title").text(),this.value]);
+    ipc.send("write-file",[$(".active .title").text(),editor.getValue()]);
 });
+
